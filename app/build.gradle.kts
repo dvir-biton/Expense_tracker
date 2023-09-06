@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
+    kotlin("android")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -72,7 +72,7 @@ dependencies {
     // hilt
     implementation("com.google.dagger:hilt-android:2.44")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    ksp("com.google.dagger:hilt-android-compiler:2.44")
 
     // viewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
@@ -81,7 +81,7 @@ dependencies {
     val roomVersion = "2.5.2"
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     // dataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
