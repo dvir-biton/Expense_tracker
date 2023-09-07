@@ -4,9 +4,17 @@ import com.fylora.expensetracker.feature_expense.domain.model.Expense
 
 data class ExpenseState(
     val balance: String = "",
-    val incomeAmount: String = "",
-    val incomeTransaction: String = "",
-    val expenseAmount: String = "",
-    val expenseTransaction: String = "",
+    val income: IncomeData = IncomeData(),
+    val expenses: ExpensesData = ExpensesData(),
     val transactions: List<Expense> = emptyList()
+)
+
+data class IncomeData(
+    val amount: String = "",
+    val transactionCount: String = ""
+)
+
+data class ExpensesData(
+    val amount: String = "",
+    val transactionCount: String = ""
 )

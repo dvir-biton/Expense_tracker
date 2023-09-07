@@ -9,7 +9,7 @@ import com.fylora.expensetracker.feature_expense.domain.model.Expense
     version = 1,
     exportSchema = false
 )
-abstract class ExpenseDatabase(): RoomDatabase() {
+abstract class ExpenseDatabase: RoomDatabase() {
 
     abstract val dao: ExpenseDao
 }
