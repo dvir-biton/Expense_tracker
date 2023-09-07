@@ -2,6 +2,8 @@ package com.fylora.expensetracker.feature_expense.presentation.util
 
 import androidx.compose.ui.graphics.Color
 import com.fylora.expensetracker.R
+import com.fylora.expensetracker.feature_expense.presentation.ui.theme.Primary
+import com.fylora.expensetracker.feature_expense.presentation.ui.theme.Secondary
 
 sealed class TransactionTypes(
     val title: String,
@@ -18,7 +20,7 @@ sealed class TransactionTypes(
         amount = "-$$amount",
         iconId = icons[0],
         type = "Payment",
-        color = Color.Red
+        color = Secondary
     )
     class Received(
         title: String,
@@ -28,7 +30,7 @@ sealed class TransactionTypes(
         amount = "$$amount",
         iconId = icons[1],
         type = "Received",
-        color = Color.Green
+        color = Primary
     )
 
     companion object{

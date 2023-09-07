@@ -11,17 +11,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fylora.expensetracker.core.fontFamily
+import com.fylora.expensetracker.feature_expense.domain.model.Expense
 import com.fylora.expensetracker.feature_expense.domain.model.toTransaction
 import com.fylora.expensetracker.feature_expense.presentation.home_screen.ExpenseState
 import com.fylora.expensetracker.feature_expense.presentation.home_screen.ExpensesData
@@ -38,16 +41,23 @@ fun HomeScreen(
         bottomBar = {
             Row(
                 modifier = Modifier
-                    .background(Color(0xFF343434))
+                    .padding(top = 8.dp)
+                    .fillMaxWidth()
             ){
                 ActionButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clip(RoundedCornerShape(25.dp, 0.dp, 0.dp, 0.dp)),
                     color = Primary,
-                    text = "New income",
+                    text = "Income",
                     onClick = { /* TODO nav host */ }
                 )
                 ActionButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clip(RoundedCornerShape(0.dp, 25.dp, 0.dp, 0.dp)),
                     color = Secondary,
-                    text = "New expense",
+                    text = "Expense",
                     onClick = { /* TODO nav host */ }
                 )
             }
@@ -89,7 +99,7 @@ fun HomeScreen(
                 text = "Last transactions",
                 color = Color.White,
                 fontWeight = FontWeight.ExtraBold,
-                fontSize = 24.sp,
+                fontSize = 28.sp,
                 fontFamily = fontFamily
             )
 
@@ -118,6 +128,19 @@ fun ScreenPreview() {
         expenses = ExpensesData(
             amount = "1234",
             transactionCount = "4"
+        ),
+        transactions = listOf(
+            Expense(
+                title = "Food",
+                type = "Payment",
+                amount = 4124.0
+            ),
+            Expense(
+                title = "Food",
+                type = "Payment",
+                amount = -3154.0
+            )
         )
+
     ))
 }

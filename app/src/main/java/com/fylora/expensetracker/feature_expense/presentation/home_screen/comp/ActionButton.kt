@@ -3,12 +3,13 @@ package com.fylora.expensetracker.feature_expense.presentation.home_screen.comp
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -22,23 +23,23 @@ import com.fylora.expensetracker.feature_expense.presentation.ui.theme.Secondary
 
 @Composable
 fun ActionButton(
+    modifier: Modifier = Modifier,
     color: Color,
     text: String,
     onClick: () -> Unit
 ) {
     Box(
-        modifier = Modifier
-            .padding(16.dp)
-            .clip(RoundedCornerShape(25.dp))
+        modifier = modifier
             .background(color)
-            .clickable { onClick() }
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
     ){
         Text(
             text = text,
             modifier = Modifier
                 .padding(horizontal = 32.dp)
-                .padding(vertical = 16.dp),
-            fontSize = 20.sp,
+                .padding(vertical = 24.dp),
+            fontSize = 28.sp,
             color = Color.White,
             fontWeight = FontWeight.ExtraBold,
             fontFamily = fontFamily,
@@ -51,8 +52,11 @@ fun ActionButton(
 @Composable
 fun ActionButtonPreview() {
     ActionButton(
+        modifier = Modifier
+            .padding(vertical = 16.dp)
+            .clip(RoundedCornerShape(0.dp, 25.dp, 25.dp, 0.dp)),
         color = Secondary,
-        text = "New expense",
-        onClick = {}
+        text = "Expense",
+        onClick = { /* TODO nav host */ }
     )
 }

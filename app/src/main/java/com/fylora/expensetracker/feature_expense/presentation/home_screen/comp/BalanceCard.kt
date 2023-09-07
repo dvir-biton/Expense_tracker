@@ -33,7 +33,7 @@ fun BalanceCard(
             text = "Main wallet",
             modifier = Modifier
                 .padding(30.dp),
-            fontSize = 24.sp,
+            fontSize = 28.sp,
             color = Color.White,
             fontWeight = FontWeight.ExtraBold,
             fontFamily = fontFamily

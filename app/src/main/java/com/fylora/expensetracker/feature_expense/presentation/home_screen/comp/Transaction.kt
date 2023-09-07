@@ -29,7 +29,9 @@ fun Transaction(
     transactionType: TransactionTypes
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .padding(horizontal = 8.dp)
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ){
         Box(
