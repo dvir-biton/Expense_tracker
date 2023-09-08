@@ -3,11 +3,6 @@ package com.fylora.expensetracker.feature_expense.presentation.home_screen
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.fylora.expensetracker.feature_expense.domain.model.Expense
-import com.fylora.expensetracker.feature_expense.domain.use_cases.CalculateTotalUseCase
-import com.fylora.expensetracker.feature_expense.domain.use_cases.GetExpensesUseCase
-import com.fylora.expensetracker.feature_expense.domain.use_cases.UpsertExpenseUseCase
 import com.fylora.expensetracker.feature_expense.domain.use_cases.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -25,7 +20,7 @@ class ExpenseViewModel @Inject constructor(
         updateExpenses()
     }
 
-    fun updateExpenses(){
+    private fun updateExpenses() {
         viewModelScope.launch {
             useCases.getExpensesUseCase().collectLatest { expenses ->
                 _state.value = state.value.copy(

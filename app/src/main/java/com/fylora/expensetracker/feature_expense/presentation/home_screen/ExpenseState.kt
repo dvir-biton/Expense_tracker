@@ -10,11 +10,11 @@ data class ExpenseState(
 )
 
 data class IncomeData(
-    val amount: String = "",
-    val transactionCount: String = ""
+    val amount: String = "0",
+    val transactionCount: String = "0"
 )
 
 data class ExpensesData(
-    val amount: String = "",
-    val transactionCount: String = ""
+    val amount: String = "0",
+    val transactionCount: String = "0"
 )

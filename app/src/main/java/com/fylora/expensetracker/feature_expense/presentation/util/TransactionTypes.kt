@@ -11,6 +11,7 @@ sealed class TransactionTypes(
     val iconId: Int,
     val type: String,
     val color: Color,
+    val screenTitle: String
 ){
     class Payment(
         title: String,
@@ -20,7 +21,8 @@ sealed class TransactionTypes(
         amount = "-$$amount",
         iconId = icons[0],
         type = "Payment",
-        color = Secondary
+        color = Secondary,
+        screenTitle = "Expense"
     )
     class Received(
         title: String,
@@ -30,7 +32,8 @@ sealed class TransactionTypes(
         amount = "$$amount",
         iconId = icons[1],
         type = "Received",
-        color = Primary
+        color = Primary,
+        screenTitle = "Income"
     )
 
     companion object{

@@ -30,7 +30,10 @@ fun Transaction(
 ) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 8.dp)
+            .padding(
+                horizontal = 18.dp,
+                vertical = 8.dp
+            )
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ){

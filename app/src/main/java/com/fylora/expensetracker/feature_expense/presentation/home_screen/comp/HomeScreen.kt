@@ -23,19 +23,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.fylora.expensetracker.core.fontFamily
 import com.fylora.expensetracker.feature_expense.domain.model.Expense
 import com.fylora.expensetracker.feature_expense.domain.model.toTransaction
 import com.fylora.expensetracker.feature_expense.presentation.home_screen.ExpenseState
 import com.fylora.expensetracker.feature_expense.presentation.home_screen.ExpensesData
 import com.fylora.expensetracker.feature_expense.presentation.home_screen.IncomeData
+import com.fylora.expensetracker.feature_expense.presentation.ui.theme.Background
 import com.fylora.expensetracker.feature_expense.presentation.ui.theme.Primary
 import com.fylora.expensetracker.feature_expense.presentation.ui.theme.Secondary
+import com.fylora.expensetracker.feature_expense.presentation.util.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    state: ExpenseState
+    state: ExpenseState,
+    navController: NavController
 ) {
     Scaffold(
         bottomBar = {
@@ -50,7 +55,11 @@ fun HomeScreen(
                         .clip(RoundedCornerShape(25.dp, 0.dp, 0.dp, 0.dp)),
                     color = Primary,
                     text = "Income",
-                    onClick = { /* TODO nav host */ }
+                    onClick = {
+                        navController.navigate(
+                            route = Screens.AddScreen.screenName + "/Income"
+                        )
+                    }
                 )
                 ActionButton(
                     modifier = Modifier
@@ -58,11 +67,15 @@ fun HomeScreen(
                         .clip(RoundedCornerShape(0.dp, 25.dp, 0.dp, 0.dp)),
                     color = Secondary,
                     text = "Expense",
-                    onClick = { /* TODO nav host */ }
+                    onClick = {
+                        navController.navigate(
+                            route = Screens.AddScreen.screenName + "/Expense"
+                        )
+                    }
                 )
             }
         },
-        contentColor = Color(0xFF222222)
+        contentColor = Background
     ) {
         Column(
             modifier = Modifier
@@ -70,7 +83,7 @@ fun HomeScreen(
                 .background(Color(0xFF222222))
                 .padding(it)
         ) {
-            BalanceCard(balance = "12414")
+            BalanceCard(balance = state.balance)
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -81,21 +94,21 @@ fun HomeScreen(
                 DataSection(
                     title = "Income",
                     titleColor = Primary,
-                    amount = "7762.42",
-                    transactionsNumber = "3"
+                    amount = state.income.amount,
+                    transactionsNumber = state.income.transactionCount
                 )
                 DataSection(
                     title = "Expenses",
                     titleColor = Secondary,
-                    amount = "6262.97",
-                    transactionsNumber = "12"
+                    amount = state.expenses.amount,
+                    transactionsNumber = state.expenses.transactionCount
                 )
             }
 
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                modifier = Modifier.padding(horizontal = 12.dp),
+                modifier = Modifier.padding(horizontal = 18.dp),
                 text = "Last transactions",
                 color = Color.White,
                 fontWeight = FontWeight.ExtraBold,
@@ -119,28 +132,28 @@ fun HomeScreen(
 @Preview
 @Composable
 fun ScreenPreview() {
-    HomeScreen(state = ExpenseState(
-        balance = "12465",
-        income = IncomeData(
-            amount = "1234",
-            transactionCount = "4"
-        ),
-        expenses = ExpensesData(
-            amount = "1234",
-            transactionCount = "4"
-        ),
-        transactions = listOf(
-            Expense(
-                title = "Food",
-                type = "Payment",
-                amount = 4124.0
+    HomeScreen(
+        navController = rememberNavController(),
+        state = ExpenseState(
+            balance = "12465",
+            income = IncomeData(
+                amount = "1234",
+                transactionCount = "4"
             ),
-            Expense(
-                title = "Food",
-                type = "Payment",
-                amount = -3154.0
+            expenses = ExpensesData(
+                amount = "1234",
+                transactionCount = "4"
+            ),
+            transactions = listOf(
+                Expense(
+                    title = "Food",
+                    amount = 4124.0
+                ),
+                Expense(
+                    title = "Food",
+                    amount = -3154.0
+                )
             )
         )
-
-    ))
+    )
 }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ExpenseDao {
 
-    @Query("SELECT * FROM expense")
+    @Query("SELECT * FROM expense ORDER BY id DESC")
     fun getExpenses(): Flow<List<Expense>>
 
     @Upsert

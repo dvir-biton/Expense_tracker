@@ -16,5 +16,4 @@ class ExpenseRepositoryImpl @Inject constructor(
     override suspend fun upsertExpense(expense: Expense) {
         dao.upsertExpense(expense)
     }
-
 }
