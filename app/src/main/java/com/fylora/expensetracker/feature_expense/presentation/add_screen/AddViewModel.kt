@@ -61,9 +61,14 @@ class AddViewModel @Inject constructor(
     fun onEvent(event: AddEvent){
         when(event){
             is AddEvent.AddNumber -> {
-                _state.value = state.value.copy(
-                    amount = state.value.amount + event.number
-                )
+                val regex = "\\d+\\.\\d{4,}"
+
+                if(!_state.value.amount.matches(Regex(regex))
+                    && state.value.amount.length < 12){
+                    _state.value = state.value.copy(
+                        amount = state.value.amount + event.number
+                    )
+                }
             }
             AddEvent.Delete -> {
                 if(state.value.amount.isNotBlank()){

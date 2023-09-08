@@ -115,7 +115,8 @@ fun AddScreen(
                 color = Color.White,
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 48.sp,
-                fontFamily = fontFamily
+                fontFamily = fontFamily,
+                maxLines = 1
             )
 
             Spacer(modifier = Modifier.height(18.dp))
@@ -145,6 +146,7 @@ fun AddScreen(
                             viewModel.onEvent(AddEvent.TextFieldAction(TextFieldEvent.ChangeTitleFocus(focused)))
                         },
                         isHintVisible = viewModel.state.value.textField.isHintVisible,
+                        singleLine = true
                     )
                 }
 

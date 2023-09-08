@@ -15,6 +15,12 @@ class UpsertExpenseUseCase(
         if(expense.title.isBlank()){
             throw InvalidExpenseException("The title cannot be empty")
         }
+        if(expense.title.length > 16){
+            throw InvalidExpenseException("The title cannot be more than 16 characters")
+        }
+        if(expense.amount.toString().length > 14){
+            throw InvalidExpenseException("Be honest, You don't have that much money")
+        }
 
         repository.upsertExpense(expense)
     }
