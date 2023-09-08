@@ -28,7 +28,7 @@ class CalculateExpensesUseCase {
         return listOf(
             incomeAmount.toString(),
             incomeTransactions.toString(),
-            (expensesAmount * -1).toString(),
+            if (expensesAmount == 0.0) "0" else (expensesAmount * -1).toString(),
             expenseTransactions.toString()
         )
     }
