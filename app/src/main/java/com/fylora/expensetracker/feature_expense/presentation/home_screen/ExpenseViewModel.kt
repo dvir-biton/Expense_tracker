@@ -23,9 +23,18 @@ class ExpenseViewModel @Inject constructor(
     private fun updateExpenses() {
         viewModelScope.launch {
             useCases.getExpensesUseCase().collectLatest { expenses ->
+                val incomeAndExpenseAmounts = useCases.calculateExpensesUseCase(expenses)
                 _state.value = state.value.copy(
                     transactions = expenses,
-                    balance = useCases.calculateTotalUseCase(expenses)
+                    balance = useCases.calculateTotalUseCase(expenses),
+                    income = IncomeData(
+                        amount = incomeAndExpenseAmounts[0],
+                        transactionCount = incomeAndExpenseAmounts[1]
+                    ),
+                    expenses = ExpensesData(
+                        amount = incomeAndExpenseAmounts[2],
+                        transactionCount = incomeAndExpenseAmounts[3]
+                    )
                 )
             }
         }
